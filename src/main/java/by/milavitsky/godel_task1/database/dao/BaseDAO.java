@@ -14,6 +14,6 @@ public interface BaseDAO <T> {
 
     void delete(Long id);
 
-    List<T> findAll(int offset, int limit);
+    List<T> findAll();
 
 }

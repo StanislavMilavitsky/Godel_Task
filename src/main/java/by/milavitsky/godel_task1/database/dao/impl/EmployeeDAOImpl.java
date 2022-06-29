@@ -94,7 +94,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public List<Employee> findAll(int offset, int limit) {
+    public List<Employee> findAll() {
         return jdbcTemplate.query(FIND_ALL_EMPLOYEE_SQL, (rs, rowNum) -> new Employee(
                 rs.getLong(EMPLOYEE_ID),
                 rs.getString(FIRST_NAME),

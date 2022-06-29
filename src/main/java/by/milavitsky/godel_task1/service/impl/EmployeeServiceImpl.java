@@ -7,6 +7,7 @@ import by.milavitsky.godel_task1.mapper.Mapper;
 import by.milavitsky.godel_task1.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,24 +22,28 @@ public class EmployeeServiceImpl implements EmployeeService {
         return (EmployeeDto) mapper.toDto(employeeDAO.findById(id));
     }
 
+    @Transactional
     @Override
     public EmployeeDto create(EmployeeDto employeeDto) {
         Employee employee = (Employee) mapper.fromDto(employeeDto);
-        return null;
+        return (EmployeeDto) mapper.toDto(employeeDAO.create(employee));
     }
 
+    @Transactional
     @Override
     public EmployeeDto update(EmployeeDto employeeDto) {
-        return null;
+        Employee employee = employeeDAO.update((Employee) mapper.fromDto(employeeDto));
+        return (EmployeeDto) mapper.toDto(employee);
     }
 
+    @Transactional
     @Override
     public void deleteById(Long id) {
-
+        employeeDAO.delete(id);
     }
 
     @Override
     public List<EmployeeDto> findAll() {
-        return null;
+        return (List<EmployeeDto>) mapper.toDto(employeeDAO.findAll());
     }
 }
