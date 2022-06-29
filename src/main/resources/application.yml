@@ -1,0 +1,21 @@
+logging:
+  level:
+    root: INFO
+    org.springframework.jdbc.core: TRACE
+
+  file:
+    name: employeedb.log
+    path: /
+
+spring:
+  mvc:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/employeedb
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    propert  ies.hibernate:
+    show_sql: true
+    format_sql: true
+
