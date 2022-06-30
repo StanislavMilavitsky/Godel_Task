@@ -2,9 +2,11 @@ package by.milavitsky.godel_task1.mapper;
 
 import by.milavitsky.godel_task1.database.entity.Employee;
 import by.milavitsky.godel_task1.dto.EmployeeDto;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+@Component
 public class EmployeeReadMapper implements Mapper<EmployeeDto, Employee> {
 
     @Override

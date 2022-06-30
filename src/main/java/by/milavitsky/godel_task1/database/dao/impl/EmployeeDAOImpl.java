@@ -4,19 +4,30 @@ import by.milavitsky.godel_task1.database.dao.EmployeeDAO;
 import by.milavitsky.godel_task1.database.dao.FilterEmployeeDAO;
 import by.milavitsky.godel_task1.database.entity.Employee;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RequiredArgsConstructor
+@Slf4j
+@Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
 
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert jdbcInsert;
+
+    @Autowired
+    public EmployeeDAOImpl(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+        jdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("employee")
+                .usingGeneratedKeyColumns("employee_id");
+    }
 
     public static final String FIND_EMPLOYEE_BY_ID_SQL = "SELECT" +
             " em.employee_id," +

@@ -6,11 +6,13 @@ import by.milavitsky.godel_task1.dto.EmployeeDto;
 import by.milavitsky.godel_task1.mapper.Mapper;
 import by.milavitsky.godel_task1.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
@@ -18,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService {
    private final Mapper mapper;
 
     @Override
-    public EmployeeDto findById(Long id) {
+        public EmployeeDto findById(Long id) {
         return (EmployeeDto) mapper.toDto(employeeDAO.findById(id));
     }
 
